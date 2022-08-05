@@ -5,17 +5,16 @@ import Tile from './tile';
 
 const TileContainer = (props: any) => {
     const children = props.tiles;
-    console.log(children);
     return (
         <View style={styles.container}>
             {
-                children.map((item: any) => {
-                    return <Tile 
-                            x={item.x} 
-                            y={item.y} 
-                            value={item.value} 
-                            key={item.prog} 
-                            />
+                children.map((item: any, index: number) => {
+                    return <Tile
+                        x={item.x}
+                        y={item.y}
+                        value={item.value}
+                        key={index}
+                    />
                 })
             }
         </View>

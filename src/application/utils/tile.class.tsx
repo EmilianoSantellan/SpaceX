@@ -6,8 +6,6 @@ export default class Tile {
     value: number;
     previousPosition: IPosition | null;
     mergedFrom: any; // Tracks tiles that merged together
-    prog: number;
-    private _prog = 0;
 
     constructor(position: any, value: any) {
         this.x = position.x;
@@ -16,7 +14,6 @@ export default class Tile {
 
         this.previousPosition = null;
         this.mergedFrom = null; // Tracks tiles that merged together
-        this.prog = this._prog++;
     }
 
     savePosition = (): void => {
