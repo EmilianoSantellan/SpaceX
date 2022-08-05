@@ -1,9 +1,9 @@
 import { Dimensions, StatusBar, Platform } from 'react-native';
 
 var { width, scale, height, fontScale } = Dimensions.get("window");
-var isIOS = Platform.OS == "ios";
+var isIOS = (Platform.OS == 'ios');
 var statusBarHeight = isIOS ? 20 : StatusBar.currentHeight;
-fontScale = scale;
+var fontScale = scale;
 // if(scale>3) fontScale = 3;
 
 export default {

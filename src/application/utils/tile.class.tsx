@@ -1,4 +1,4 @@
-import { IPosition, ITitle } from '../common/interfaces/index';
+import { IPosition, ITitle } from '../interfaces/index';
 
 export default class Tile {
     x: number;

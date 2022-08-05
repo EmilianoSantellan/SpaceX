@@ -1,25 +1,19 @@
 import React from 'react';
 import { View, Text, Dimensions, TouchableWithoutFeedback } from 'react-native';
+import { IMessageProps } from '../../../../application/interfaces/message.interface';
+import MSG from '../../../../application/common/messages';
 import { styles } from './styles';
 const { width } = Dimensions.get('window');
-
-export interface MessageProps {
-    won: boolean;
-    over: boolean;
-    onKeepGoing: any;
-    onTryAagin: any;
-}
-
-class GameMessage extends React.Component<MessageProps, {}> {
+class GameMessage extends React.Component<IMessageProps> {
     genMessage() {
         if (this.props.won) {
             return (
                 <View style={styles.row}>
-                    <Text style={styles.won}>¡Felicidades, acabas de ganar!</Text>
+                    <Text style={styles.won}>{MSG.GAME_WON.TITLE}</Text>
                     <View style={styles.lower}>
                         <TouchableWithoutFeedback onPress={this.props.onKeepGoing}>
                             <View style={styles.keepGoingContainer}>
-                                <Text style={styles.keepGoing}>Sigue adelante</Text>
+                                <Text style={styles.keepGoing}>{MSG.GAME_WON.KEEP_GOING}</Text>
                             </View>
                         </TouchableWithoutFeedback>
                     </View>
@@ -29,11 +23,11 @@ class GameMessage extends React.Component<MessageProps, {}> {
         if (this.props.over) {
             return (
                 <View style={styles.row}>
-                    <Text style={styles.over}>Game over!</Text>
+                    <Text style={styles.over}>{MSG.GAME_OVER.TITLE}</Text>
                     <View style={styles.lower}>
                         <TouchableWithoutFeedback onPress={this.props.onTryAagin}>
                             <View style={styles.tryAgainContainer}>
-                                <Text style={styles.tryAgain}>Intentar otra vez</Text>
+                                <Text style={styles.tryAgain}>{MSG.GAME_OVER.TRY_AGAIN}</Text>
                             </View>
                         </TouchableWithoutFeedback>
                     </View>
@@ -44,8 +38,8 @@ class GameMessage extends React.Component<MessageProps, {}> {
     }
 
     render() {
-        const message = this.genMessage()
-        const containerStyle = (this.props.won || this.props.over) ? { width: width - 40, height: width - 40 } : { width: 0, height: 0 }
+        const message = this.genMessage();
+        const containerStyle = (this.props.won || this.props.over) ? { width: width - 40, height: width - 40 } : { width: 0, height: 0 };
         return (
             <View style={[styles.container, containerStyle]}>{message}</View>
         )

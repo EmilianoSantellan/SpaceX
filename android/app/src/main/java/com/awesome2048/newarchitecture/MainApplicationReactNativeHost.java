@@ -1,4 +1,4 @@
-package com.awesome2048.newarchitecture;
+package com.spacex.newarchitecture;
 
 import android.app.Application;
 import androidx.annotation.NonNull;
@@ -19,9 +19,9 @@ import com.facebook.react.fabric.CoreComponentsRegistry;
 import com.facebook.react.fabric.EmptyReactNativeConfig;
 import com.facebook.react.fabric.FabricJSIModuleProvider;
 import com.facebook.react.uimanager.ViewManagerRegistry;
-import com.awesome2048.BuildConfig;
-import com.awesome2048.newarchitecture.components.MainComponentsRegistry;
-import com.awesome2048.newarchitecture.modules.MainApplicationTurboModuleManagerDelegate;
+import com.spacex.BuildConfig;
+import com.spacex.newarchitecture.components.MainComponentsRegistry;
+import com.spacex.newarchitecture.modules.MainApplicationTurboModuleManagerDelegate;
 import java.util.ArrayList;
 import java.util.List;
 

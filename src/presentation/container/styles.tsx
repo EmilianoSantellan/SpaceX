@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native';
 import Dimensions from '../../application/utils/dimensions';
-
+import colors from '../../application/common/colors';
 const { height, width } = Dimensions.get('window');
 
 export const styles = StyleSheet.create({
@@ -8,7 +8,7 @@ export const styles = StyleSheet.create({
         flex: 1,
         width,
         height,
-        backgroundColor: '#484156',
+        backgroundColor: colors.background,
         paddingHorizontal: Dimensions.size["5"],
     },
     image: {

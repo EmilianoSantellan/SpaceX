@@ -21,10 +21,11 @@ export const styles = StyleSheet.create({
         fontWeight: 'bold',
     },
     newGameContainer: {
-        backgroundColor: '#ABD19C',
+        backgroundColor: '#66acff',
         paddingHorizontal: Dimensions.size["4"],
         paddingVertical: Dimensions.size["4"],
         borderRadius: Dimensions.size["2"],
+        justifyContent: 'center'
     },
     newGame: {
         color: '#fff',

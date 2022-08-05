@@ -1,5 +1,5 @@
 import Tile from './tile.class';
-import { IPosition } from '../common/interfaces/position.interface';
+import { IPosition } from '../interfaces/position.interface';
 
 export default class Grid {
     size: number;

@@ -13,40 +13,17 @@ import Grid from '../../application/utils/grid.class';
 import Tile from '../../application/utils/tile.class';
 
 // Views
-import Heading from '../../application/common/components/heading/heading';
+import Heading from '../../infrastructure/components/heading/heading';
 import AboveGame from '../components/game/above/aboveGame';
 import GameContainer from '../components/game/container/gameContainer';
 
-// Dimensions
-import Dimensions from '../../application/utils/dimensions';
-const { height, width } = Dimensions.get('window');
+// Interfaces
+import { IGameProps, IGameState, ITraversal } from '../../application/interfaces/game.interface';
 
 // StorageManager
 const storageManager = new StorageManager();
 
-interface GameProps {
-    startTiles: number;
-    size: number;
-}
-
-interface State {
-    tiles: any[];
-    score: number;
-    over: boolean;
-    win: boolean;
-    keepPlaying: boolean;
-    grid: any;
-    size: number;
-    best?: number;
-    won?: boolean;
-}
-
-interface Traversal {
-    x: number[];
-    y: number[];
-}
-
-class Container extends React.Component<GameProps, State> {
+class Container extends React.Component<IGameProps, IGameState> {
     moving: boolean = false;
     won: boolean = false;
     over: boolean = false;
@@ -57,7 +34,7 @@ class Container extends React.Component<GameProps, State> {
 
     _panResponder: any;
 
-    constructor(props: GameProps) {
+    constructor(props: IGameProps) {
         super(props);
         this.state = { tiles: [], score: 0, over: false, win: false, keepPlaying: false, grid: new Grid(props.size), size: props.size }
     }
@@ -115,10 +92,10 @@ class Container extends React.Component<GameProps, State> {
         var _self = this;
         return (
             <View {...this._panResponder.panHandlers} style={styles.container}>
-                <ImageBackground source={require('../../assets/images/background.png')} resizeMode="cover" style={styles.image}>
+                <ImageBackground source={require('../../application/images/background.png')} resizeMode="cover" style={styles.image}>
                     <Heading score={this.state.score} best={this.state.best}></Heading>
                     <AboveGame onRestart={() => _self.restart()}></AboveGame>
-                    <GameContainer size={this.state.size} tiles={this.state.tiles} won={this.state.won} over={this.state.over}
+                    <GameContainer tiles={tiles} won={this.state.won} over={this.state.over}
                         onKeepGoing={() => _self.keepGoing()} onTryAagin={() => _self.restart()}>
                     </GameContainer>
                 </ImageBackground>
@@ -361,7 +338,7 @@ class Container extends React.Component<GameProps, State> {
 
     // Build a list of positions to traverse in the right order
     buildTraversals(vector: any) {
-        var traversals: Traversal = { x: [], y: [] };
+        var traversals: ITraversal = { x: [], y: [] };
 
         for (var pos = 0; pos < this.state.size; pos++) {
             traversals.x.push(pos);
