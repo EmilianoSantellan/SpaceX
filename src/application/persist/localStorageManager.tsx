@@ -1,106 +1,67 @@
 // import { AsyncStorageStatic } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { ILocalStorage } from '../interfaces/local-storage.interface';
 
 export default class LocalStorageManager {
-    bestScoreKey: string;
-    gameStateKey: string;
-    storage;
+    private bestScoreKey: string;
+    private gameStateKey: string;
 
     constructor() {
-        this.bestScoreKey = "bestScore"
-        this.gameStateKey = "gameState"
-        this.storage = AsyncStorage
+        this.bestScoreKey = 'bestScore';
+        this.gameStateKey = 'gameState';
     }
 
-    getItem = (options: any) => {
-        AsyncStorage.getItem(options.key, (error, result) => {
-            if (error) {
-                options.error(error);
-            } else {
-                options.success(result);
-            }
+    private getItem(key: string): Promise<string | null> {
+        return AsyncStorage.getItem(key);
+    };
+
+    private setItem(options: ILocalStorage): Promise<void> {
+        return AsyncStorage.setItem(options.key, options.value);
+    };
+
+    private removeItem(key: string): void {
+        AsyncStorage.removeItem(key);
+    };
+
+    async getBestScore(): Promise<number> {
+        return await new Promise((resolve, reject) => {
+            this.getItem(this.bestScoreKey)
+                .then((result) => {
+                    resolve(result ? parseInt(result) : 0)
+                })
+                .catch((err) => {
+                    reject(err);
+                })
         });
     };
 
-    setItem = (options: any) => {
-        AsyncStorage.setItem(options.key, options.value, (err) => {
-            if (err) {
-                options.error(err);
-            } else {
-                options.success();
-            }
-        });
-    };
-
-    removeItem = (options: any) => {
-        AsyncStorage.removeItem(options.key, (err) => {
-            if (err) {
-                options.error(err);
-            } else {
-                options.success();
-            }
-        });
-    };
-
-    getBestScore = (callback?: any) => {
-        var callback = callback ? callback : () => { };
-        this.getItem({
+    setBestScore(score: number): Promise<void> {
+        return this.setItem({
             key: this.bestScoreKey,
-            success: (result: any) => {
-                callback(result && !isNaN(result) ? parseInt(result) : 0);
-            },
-            error: (error: any) => {
-                console.log(error);
-            }
+            value: score.toString()
         });
     };
 
-    setBestScore = (score: number, callback?: any) => {
-        var callback = callback ? callback : () => { };
-        this.setItem({
-            key: this.bestScoreKey,
-            value: score.toString(),
-            success: callback,
-            error: (error: any) => {
-                console.log(error);
-            }
+    async getGameState(): Promise<any> {
+        return await new Promise((resolve, reject) => {
+            this.getItem(this.gameStateKey)
+                .then((result) => {
+                    resolve(result ? JSON.parse(result) : null)
+                })
+                .catch((err) => {
+                    reject(err);
+                })
         });
     };
 
-    getGameState = (callback: Function) => {
-        return this.getItem({
+    setGameState(gameState: any): Promise<void> {
+        return this.setItem({
             key: this.gameStateKey,
-            success: (result: any) => {
-                var state = result ? JSON.parse(result) : null;
-                callback(state);
-            },
-            error: (error: any) => {
-                console.log(error);
-            }
-        })
-    };
-
-    setGameState = (gameState: any, callback?: any) => {
-        var callback = callback ? callback : () => { };
-        var json = gameState ? JSON.stringify(gameState) : null;
-        this.setItem({
-            key: this.bestScoreKey,
-            value: json,
-            success: callback,
-            error: (error: any) => {
-                console.log(error);
-            }
+            value: gameState ? JSON.stringify(gameState) : null
         });
     };
 
-    clearGameState = (callback?: any) => {
-        var callback = callback ? callback : () => { };
-        this.removeItem({
-            key: this.bestScoreKey,
-            success: callback,
-            error: (error: any) => {
-                console.log(error);
-            }
-        });
+    clearGameState(): void {
+        this.removeItem(this.gameStateKey);
     };
 }

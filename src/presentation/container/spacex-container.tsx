@@ -23,7 +23,7 @@ import { IGameProps, IGameState, ITraversal } from '../../application/interfaces
 // StorageManager
 const storageManager = new StorageManager();
 
-class Container extends React.Component<IGameProps, IGameState> {
+class SpaceXContainer extends React.Component<IGameProps, IGameState> {
     moving: boolean = false;
     won: boolean = false;
     over: boolean = false;
@@ -162,17 +162,21 @@ class Container extends React.Component<IGameProps, IGameState> {
             this.keepPlaying = false;
         }
         var _self = this;
-        storageManager.getBestScore((bestScore: any) => {
-            // Animate the update
-            LayoutAnimation.easeInEaseOut();
-            _self.setState({ score: _self.score, best: bestScore, tiles: _self.getRandomTiles(), over: _self.over, won: _self.won });
-        })
+        storageManager.getBestScore()
+            .then((bestScore: number) => {
+                LayoutAnimation.easeInEaseOut();
+                _self.setState({ score: _self.score, best: bestScore, tiles: _self.getRandomTiles(), over: _self.over, won: _self.won });
+            });
     }
 
     // Set up the game
     setup(): void {
         var _self = this;
-        storageManager.getGameState((result: any) => _self.setGameState(result));
+
+        storageManager.getGameState()
+            .then((res: any) => {
+                _self.setGameState(res);
+            })
     }
 
     // Set up the initial tiles to start the game with
@@ -203,14 +207,6 @@ class Container extends React.Component<IGameProps, IGameState> {
             storageManager.setGameState(this.serialize());
         }
 
-        // this.actuator.actuate(this.grid, {
-        //   score:      this.score,
-        //   over:       this.over,
-        //   won:        this.won,
-        //   bestScore:  storageManager.getBestScore(),
-        //   terminated: this.isGameTerminated()
-        // });
-
         var tiles: any[] = [];
         this.grid.cells.forEach((column: any[]) => {
             column.forEach((cell: any) => {
@@ -224,17 +220,18 @@ class Container extends React.Component<IGameProps, IGameState> {
             });
         });
         var _self = this;
-        storageManager.getBestScore((bestScore: any) => {
-            // Animate the update
-            LayoutAnimation.easeInEaseOut();
-            if (bestScore < _self.score) {
-                storageManager.setBestScore(_self.score);
-                _self.setState({ score: _self.score, best: _self.score, tiles: tiles, won: _self.won, over: _self.over });
-            }
-            else {
-                _self.setState({ score: _self.score, tiles: tiles, won: _self.won, over: _self.over });
-            }
-        });
+        storageManager.getBestScore()
+            .then((bestScore: number) => {
+                // Animate the update
+                LayoutAnimation.easeInEaseOut();
+                if (bestScore < _self.score) {
+                    storageManager.setBestScore(_self.score);
+                    _self.setState({ score: _self.score, best: _self.score, tiles: tiles, won: _self.won, over: _self.over });
+                }
+                else {
+                    _self.setState({ score: _self.score, tiles: tiles, won: _self.won, over: _self.over });
+                }
+            });
     }
 
     // Represent the current game as an object
@@ -401,4 +398,4 @@ class Container extends React.Component<IGameProps, IGameState> {
     }
 }
 
-export default Container;
+export default SpaceXContainer;

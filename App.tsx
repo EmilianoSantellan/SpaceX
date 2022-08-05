@@ -2,7 +2,7 @@ import React from 'react';
 import { StatusBar, SafeAreaView } from 'react-native';
 import { ModalProvider } from 'react-native-use-modal';
 import colors from './src/application/common/colors';
-import SpaceX from './src/presentation/container/container';
+import SpaceX from './src/presentation/container/spacex-container';
 
 const App = () => {
   const backgroundStyle = {
