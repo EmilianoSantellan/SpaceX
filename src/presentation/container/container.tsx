@@ -119,8 +119,7 @@ class Container extends React.Component<IGameProps, IGameState> {
         return {
             value: value,
             x: pos.x,
-            y: pos.y,
-            prog: tile.prog
+            y: pos.y
         };
     }
 
@@ -219,8 +218,7 @@ class Container extends React.Component<IGameProps, IGameState> {
                     tiles.push({
                         x: cell.x,
                         y: cell.y,
-                        value: cell.value,
-                        prog: cell.prog
+                        value: cell.value
                     });
                 }
             });

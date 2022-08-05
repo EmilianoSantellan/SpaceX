@@ -10,5 +10,7 @@ export const styles = StyleSheet.create({
         // backgroundColor: '#484156',
         borderRadius: Dimensions.size["2"],
         marginTop: Dimensions.size["12"],
+        alignItems: 'center',
+        justifyContent: 'center'
     }
 });
