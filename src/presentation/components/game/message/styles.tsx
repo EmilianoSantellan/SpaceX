@@ -1,13 +1,12 @@
 import { StyleSheet, Dimensions } from 'react-native';
 const { width } = Dimensions.get('window');
+import D from '../../../../application/utils/dimensions';
 
 export const styles = StyleSheet.create({
     container: {
-        position: 'absolute',
-        left: 0,
-        top: 0,
+        flex: 1,
         overflow: 'hidden',
-        backgroundColor: 'rgba(238, 228, 218, 0.5)',
+        backgroundColor: 'rgba(0, 0, 15, 0.5)',
         flexDirection: 'column',
         alignItems: 'center',
         justifyContent: 'center',
@@ -19,40 +18,33 @@ export const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
     },
-    won: {
-        fontSize: 60,
-        color: '#776E65',
-        textAlign: 'center',
-    },
-    over: {
-        fontSize: 60,
-        color: '#776E65',
+    title: {
+        fontFamily: 'Retro Gaming',
+        fontSize: D.size["18"],
+        color: 'white',
         textAlign: 'center',
     },
     lower: {
         flex: 1,
+        marginTop: 20,
         height: 120,
     },
-    keepGoingContainer: {
-        height: 40,
-        backgroundColor: '#8f7a66',
+    buttonContainer: {
+        height: 60,
         borderRadius: 3,
         paddingHorizontal: 15,
+        alignItems: 'center',
+        justifyContent:'center'
     },
-    keepGoing: {
+    textButton: {
         fontSize: 24,
         color: '#f9f6f2',
         textAlign: 'center',
+    },
+    keepGoingContainer: {
+        backgroundColor: '#8f7a66',
     },
     tryAgainContainer: {
-        height: 40,
-        backgroundColor: '#8f7a66',
-        borderRadius: 3,
-        paddingHorizontal: 15,
-    },
-    tryAgain: {
-        fontSize: 24,
-        color: '#f9f6f2',
-        textAlign: 'center',
+        backgroundColor: 'red',
     }
 });

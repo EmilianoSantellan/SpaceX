@@ -9,9 +9,10 @@ export const styles = StyleSheet.create({
     },
     headingTitle: {
         flex: 4,
-        fontSize: Dimensions.size["12"],
+        fontSize: Dimensions.size["10"],
         color: '#FCFBF7',
-        fontWeight: 'bold',
+        // fontWeight: 'bold',
+        fontFamily: 'Retro Gaming',
     },
     scores: {
         flex: 6,
