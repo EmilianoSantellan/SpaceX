@@ -19,8 +19,8 @@ export default class LocalStorageManager {
         return AsyncStorage.setItem(options.key, options.value);
     };
 
-    private removeItem(key: string): void {
-        AsyncStorage.removeItem(key);
+    private removeItem(key: string): Promise<void> {
+        return AsyncStorage.removeItem(key);
     };
 
     async getBestScore(): Promise<number> {
@@ -61,7 +61,7 @@ export default class LocalStorageManager {
         });
     };
 
-    clearGameState(): void {
-        this.removeItem(this.gameStateKey);
+    clearGameState(): Promise<void> {
+        return this.removeItem(this.gameStateKey);
     };
 }

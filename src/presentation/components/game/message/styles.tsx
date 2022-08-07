@@ -19,7 +19,6 @@ export const styles = StyleSheet.create({
         justifyContent: 'center',
     },
     title: {
-        fontFamily: 'Retro Gaming',
         fontSize: D.size["18"],
         color: 'white',
         textAlign: 'center',

@@ -19,7 +19,7 @@ export default {
     toolBarHeight: 22 * fontScale,
     tabBarHeight: 25 * fontScale,
     contentHeight: (statusBarHeight) ? height - statusBarHeight : height,
-    getFontSize: (size: any): number => {
+    getFontSize: (size: number): number => {
         return size * fontScale;// 4 6 8 12 16 24 32 48 64
     },
     getWidth: (width: number): number => {

@@ -1,5 +1,6 @@
+import { ITile } from './tile.interface';
 export interface IGame {
-    tiles: any[];
+    tiles: ITile[];
     won: boolean | undefined;
     over: boolean | undefined;
     onKeepGoing: () => void | undefined;
@@ -12,7 +13,7 @@ export interface IGameProps {
 }
 
 export interface IGameState {
-    tiles: any[];
+    tiles: ITile[];
     score: number;
     over: boolean | undefined;
     win: boolean | undefined;
@@ -24,7 +25,7 @@ export interface IGameState {
 }
 
 export interface IAboveGameProps {
-    onRestart: () => void | undefined;
+    onRestart: () => void;
 }
 
 export interface ITraversal {

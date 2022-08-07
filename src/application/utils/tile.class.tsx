@@ -1,4 +1,4 @@
-import { IPosition, ITitle } from '../interfaces/index';
+import { IPosition } from '../interfaces/index';
 
 export default class Tile {
     x: number;
@@ -7,7 +7,7 @@ export default class Tile {
     previousPosition: IPosition | null;
     mergedFrom: any; // Tracks tiles that merged together
 
-    constructor(position: any, value: any) {
+    constructor(position: IPosition, value: number) {
         this.x = position.x;
         this.y = position.y;
         this.value = value || 2;
@@ -25,7 +25,7 @@ export default class Tile {
         this.y = position.y;
     }
 
-    serialize = (): ITitle => {
+    serialize = (): any => {
         return {
             position: {
                 x: this.x,

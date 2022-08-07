@@ -4,13 +4,13 @@ import { View, Text, Image } from 'react-native';
 import { styles } from './styles';
 import PLANETS from '../../../application/common/planets';
 import Dimensions from '../../../application/utils/dimensions';
-
+import { ITile } from '../../../application/interfaces';
 const { width } = Dimensions.get('window')
 
 const MARGIN_WIDTH = Dimensions.size["2"];
 const ITEM_WIDTH = (width - Dimensions.size["10"] - MARGIN_WIDTH * 10) / 4;
 
-const Tile = (props: any) => {
+const Tile = (props: ITile) => {
     const tilePositionStyle = {
         left: props.x * (ITEM_WIDTH + MARGIN_WIDTH * 2) + MARGIN_WIDTH * 2,
         top: props.y * (ITEM_WIDTH + MARGIN_WIDTH * 2) + MARGIN_WIDTH * 2,

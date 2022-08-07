@@ -12,7 +12,7 @@ export const styles = StyleSheet.create({
         fontSize: Dimensions.size["10"],
         color: '#FCFBF7',
         // fontWeight: 'bold',
-        fontFamily: 'Retro Gaming',
+        fontFamily: 'Cartoon Fun',
     },
     scores: {
         flex: 6,

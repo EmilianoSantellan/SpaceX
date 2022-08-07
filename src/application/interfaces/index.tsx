@@ -1,2 +1,3 @@
 export * from './position.interface';
-export * from './title.interface';
+export * from './tile.interface';
+export * from './tiles.interface';

@@ -1,6 +1,5 @@
 import Tile from './tile.class';
-import { IPosition } from '../interfaces/position.interface';
-
+import { IPosition, ITile } from '../interfaces';
 export default class Grid {
     size: number;
     cells: any;
@@ -50,7 +49,7 @@ export default class Grid {
     availableCells = (): any[] => {
         var cells: any[] = [];
 
-        this.eachCell((x: any, y: any, tile: any) => {
+        this.eachCell((x: number, y: number, tile: ITile) => {
             if (!tile) {
                 cells.push({ x: x, y: y });
             }
@@ -88,12 +87,12 @@ export default class Grid {
     };
 
     // Inserts a tile at its position
-    insertTile = (tile: any): void => {
+    insertTile = (tile: ITile): void => {
         this.cells[tile.x][tile.y] = tile;
         // console.log(this.toString());
     };
 
-    removeTile = (tile: any): void => {
+    removeTile = (tile: ITile): void => {
         this.cells[tile.x][tile.y] = null;
     };
 

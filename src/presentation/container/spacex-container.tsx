@@ -18,6 +18,7 @@ import AboveGame from '../components/game/above/aboveGame';
 import GameContainer from '../components/game/container/gameContainer';
 
 // Interfaces
+import { ITile } from '../../application/interfaces';
 import { IGameProps, IGameState, ITraversal } from '../../application/interfaces/game.interface';
 
 // StorageManager
@@ -36,10 +37,11 @@ class SpaceXContainer extends React.Component<IGameProps, IGameState> {
 
     constructor(props: IGameProps) {
         super(props);
-        this.state = { tiles: [], score: 0, over: false, win: false, keepPlaying: false, grid: new Grid(props.size), size: props.size }
+        this.state = { tiles: [], score: 0, over: false, win: false, keepPlaying: false, grid: new Grid(props.size), size: props.size };
+        this.init();
     }
 
-    componentWillMount() {
+    init() {
         this.setup()
         var _self = this;
         this._panResponder = PanResponder.create({
@@ -96,22 +98,22 @@ class SpaceXContainer extends React.Component<IGameProps, IGameState> {
                     <Heading score={this.state.score} best={this.state.best}></Heading>
                     <AboveGame onRestart={() => _self.restart()}></AboveGame>
                     <GameContainer tiles={tiles} won={this.state.won} over={this.state.over}
-                        onKeepGoing={() => _self.keepGoing()} onTryAagin={() => _self.restart()}>
+                        onKeepGoing={_self.keepGoing} onTryAagin={_self.restart}>
                     </GameContainer>
                 </ImageBackground>
             </View>
         );
     }
 
-    getRandomTiles(): any[] {
+    getRandomTiles(): ITile[] {
         var ret = [];
         for (var i = 0; i < this.props.startTiles; i++) {
-            ret.push(this.getRandomTile())
+            ret.push(this.getRandomTile());
         }
         return ret;
     }
 
-    getRandomTile(): any {
+    getRandomTile(): ITile {
         var value = Math.random() < 0.9 ? 2 : 4;
         var pos = this.grid.randomAvailableCell();
         var tile = new Tile(pos, value);
@@ -130,9 +132,11 @@ class SpaceXContainer extends React.Component<IGameProps, IGameState> {
     }
 
     restart(): void {
-        storageManager.clearGameState();
-        this.continueGame();  // Clear the game won/lost message
-        this.setup()
+        storageManager.clearGameState()
+            .then(() => {
+                this.continueGame();  // Clear the game won/lost message
+                this.setup()
+            });
     }
 
     // Keep playing after winning (allows going over 2048)
