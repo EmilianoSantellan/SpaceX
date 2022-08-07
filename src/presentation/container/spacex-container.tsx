@@ -93,13 +93,14 @@ class SpaceXContainer extends React.Component<IGameProps, IGameState> {
         var tiles = this.state.tiles ? this.state.tiles : [];
         var _self = this;
         return (
-            <View {...this._panResponder.panHandlers} style={styles.container}>
+            <View style={styles.container}>
                 <ImageBackground source={require('../../application/images/background.png')} resizeMode="cover" style={styles.image}>
                     <Heading score={this.state.score} best={this.state.best}></Heading>
                     <AboveGame onRestart={() => _self.restart()}></AboveGame>
-                    <GameContainer tiles={tiles} won={this.state.won} over={this.state.over}
-                        onKeepGoing={_self.keepGoing} onTryAagin={_self.restart}>
-                    </GameContainer>
+                    <View {...this._panResponder.panHandlers}>
+                        <GameContainer tiles={tiles} won={this.state.won} over={this.state.over}
+                            onKeepGoing={_self.keepGoing} onTryAagin={_self.restart} />
+                    </View>
                 </ImageBackground>
             </View>
         );
