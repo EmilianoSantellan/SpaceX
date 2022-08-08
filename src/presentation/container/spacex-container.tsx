@@ -39,7 +39,7 @@ class SpaceXContainer extends React.Component<IGameProps, IGameState> {
 
     constructor(props: IGameProps) {
         super(props);
-        this.state = { tiles: [], score: 0, over: false, win: false, keepPlaying: false, grid: new Grid(props.size), size: props.size };
+        this.state = { tiles: [], score: 0, over: false, won: false, keepPlaying: false, grid: new Grid(props.size), size: props.size };
         this.init();
     }
 

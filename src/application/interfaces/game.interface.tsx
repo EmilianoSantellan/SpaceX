@@ -16,12 +16,11 @@ export interface IGameState {
     tiles: ITile[];
     score: number;
     over: boolean | undefined;
-    win: boolean | undefined;
+    won: boolean | undefined;
     keepPlaying: boolean;
     grid: any;
     size: number;
     best?: number | undefined;
-    won?: boolean | undefined;
 }
 
 export interface IAboveGameProps {

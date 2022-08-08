@@ -23,6 +23,9 @@ export const styles = StyleSheet.create({
         color: 'white',
         textAlign: 'center',
     },
+    font: {
+        fontFamily: 'Cartoon Fun',
+    },
     lower: {
         flex: 1,
         marginTop: 20,
@@ -44,6 +47,6 @@ export const styles = StyleSheet.create({
         backgroundColor: '#8f7a66',
     },
     tryAgainContainer: {
-        backgroundColor: 'red',
+        backgroundColor: '#FF5959',
     }
 });

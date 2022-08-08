@@ -10,7 +10,7 @@ export default {
         BEST_SCORE: 'MEJOR PUNTAJE'
     },
     GAME_OVER: {
-        TITLE: 'Game over!',
+        TITLE: 'Game Over!',
         TRY_AGAIN: 'Intentar otra vez'
     },
     GAME_WON: {
