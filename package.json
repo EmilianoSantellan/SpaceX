@@ -13,8 +13,7 @@
     "@react-native-async-storage/async-storage": "^1.17.5",
     "react": "17.0.2",
     "react-native": "0.68.2",
-    "react-native-svg": "^12.3.0",
-    "react-native-use-modal": "^1.0.0"
+    "react-native-svg": "^12.3.0"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",

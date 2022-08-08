@@ -1,10 +1,10 @@
 import { ITile } from './tile.interface';
 export interface IGame {
     tiles: ITile[];
-    won: boolean | undefined;
-    over: boolean | undefined;
-    onKeepGoing: () => void | undefined;
-    onTryAagin: () => void | undefined;
+    // won: boolean | undefined;
+    // over: boolean | undefined;
+    // onKeepGoing: () => void | undefined;
+    // onTryAagin: () => void | undefined;
 }
 
 export interface IGameProps {

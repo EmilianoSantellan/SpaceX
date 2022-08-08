@@ -16,6 +16,8 @@ import Tile from '../../application/utils/tile.class';
 import Heading from '../../infrastructure/components/heading/heading';
 import AboveGame from '../components/game/above/aboveGame';
 import GameContainer from '../components/game/container/gameContainer';
+import GameOver from '../components/game/message/GameOver';
+import GameWon from '../components/game/message/gameWon';
 
 // Interfaces
 import { ITile } from '../../application/interfaces';
@@ -97,9 +99,10 @@ class SpaceXContainer extends React.Component<IGameProps, IGameState> {
                 <ImageBackground source={require('../../application/images/background.png')} resizeMode="cover" style={styles.image}>
                     <Heading score={this.state.score} best={this.state.best}></Heading>
                     <AboveGame onRestart={() => _self.restart()}></AboveGame>
+                    <GameOver over={this.state.over} onTryAagin={() => _self.restart()} />
+                    <GameWon won={this.state.won} onKeepGoing={() => _self.keepGoing()} />
                     <View {...this._panResponder.panHandlers}>
-                        <GameContainer tiles={tiles} won={this.state.won} over={this.state.over}
-                            onKeepGoing={_self.keepGoing} onTryAagin={_self.restart} />
+                        <GameContainer tiles={tiles} />
                     </View>
                 </ImageBackground>
             </View>
