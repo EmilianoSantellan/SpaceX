@@ -18,10 +18,14 @@ import AboveGame from '../components/game/above/aboveGame';
 import GameContainer from '../components/game/container/gameContainer';
 import GameOver from '../components/game/message/GameOver';
 import GameWon from '../components/game/message/gameWon';
+import Loading from '../../infrastructure/components/loading/loading';
 
 // Interfaces
 import { ITile } from '../../application/interfaces';
 import { IGameProps, IGameState, ITraversal } from '../../application/interfaces/game.interface';
+
+// Sounds
+import SoundGame from '../../application/common/sounds';
 
 // StorageManager
 const storageManager = new StorageManager();
@@ -36,6 +40,8 @@ class SpaceXContainer extends React.Component<IGameProps, IGameState> {
     grid: any;
 
     _panResponder: any;
+
+    showLoading: boolean = false;
 
     constructor(props: IGameProps) {
         super(props);
@@ -99,8 +105,9 @@ class SpaceXContainer extends React.Component<IGameProps, IGameState> {
                 <ImageBackground source={require('../../application/images/background.png')} resizeMode="cover" style={styles.image}>
                     <Heading score={this.state.score} best={this.state.best}></Heading>
                     <AboveGame onRestart={() => _self.restart()}></AboveGame>
-                    <GameOver over={this.state.over} onTryAagin={() => _self.restart()} />
-                    <GameWon won={this.state.won} onKeepGoing={() => _self.keepGoing()} />
+                    <GameOver over={this.state.over} score={this.state.score} onTryAagin={() => _self.restart()} />
+                    <GameWon won={this.state.won} score={this.state.score} onKeepGoing={() => _self.keepGoing()} />
+                    <Loading show={this.showLoading} />
                     <View {...this._panResponder.panHandlers}>
                         <GameContainer tiles={tiles} />
                     </View>
@@ -132,10 +139,12 @@ class SpaceXContainer extends React.Component<IGameProps, IGameState> {
     continueGame(): void {
         this.won = false;
         this.over = false;
+        SoundGame.reStart();
         this.setState({ won: this.won, over: this.over });
     }
 
     restart(): void {
+        this.showLoading = true;
         storageManager.clearGameState()
             .then(() => {
                 this.continueGame();  // Clear the game won/lost message
@@ -180,9 +189,10 @@ class SpaceXContainer extends React.Component<IGameProps, IGameState> {
     // Set up the game
     setup(): void {
         var _self = this;
-
+        _self.showLoading = true;
         storageManager.getGameState()
             .then((res: any) => {
+                _self.showLoading = false;
                 _self.setGameState(res);
             })
     }
@@ -233,6 +243,7 @@ class SpaceXContainer extends React.Component<IGameProps, IGameState> {
                 // Animate the update
                 LayoutAnimation.easeInEaseOut();
                 if (bestScore < _self.score) {
+                    SoundGame.bestScore();
                     storageManager.setBestScore(_self.score);
                     _self.setState({ score: _self.score, best: _self.score, tiles: tiles, won: _self.won, over: _self.over });
                 }
@@ -304,9 +315,13 @@ class SpaceXContainer extends React.Component<IGameProps, IGameState> {
 
                         // Update the score
                         self.score += merged.value;
+                        SoundGame.score();
 
                         // The mighty 2048 tile
-                        if (merged.value === 2048) self.won = true;
+                        if (merged.value === 2048) {
+                            self.won = true;
+                            SoundGame.gameWon();
+                        }
                     } else {
                         self.moveTile(tile, positions.farthest);
                     }
@@ -322,6 +337,7 @@ class SpaceXContainer extends React.Component<IGameProps, IGameState> {
             this.addRandomTile();
             if (!this.movesAvailable()) {
                 this.over = true; // Game over!
+                SoundGame.gameOver();
             }
             this.actuate();
         }

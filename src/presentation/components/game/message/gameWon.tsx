@@ -1,19 +1,26 @@
 import React from 'react';
-import { Text, View, Modal, TouchableOpacity } from 'react-native';
+import { Text, View, Modal, TouchableOpacity, StatusBar, Image } from 'react-native';
 import { IGameWonProp } from '../../../../application/interfaces/message.interface';
 import MSG from '../../../../application/common/messages';
-import { styles } from './styles';
+import { styles, colors } from './styles';
 
 class GameWon extends React.Component<IGameWonProp> {
     render(): React.ReactNode {
         return (
-            <Modal animationType="slide" transparent={true} visible={this.props.won}>
-                <View style={[styles.container]}>
+            <Modal animationType="fade" transparent={true} visible={this.props.won}>
+                <StatusBar barStyle="light-content" backgroundColor={colors.primaryVariant} />
+                <View style={[styles.container, styles.wonContainer]}>
                     <View style={styles.row}>
-                        <Text style={styles.title}>{MSG.GAME_WON.TITLE}</Text>
+                        <Text style={[styles.title, styles.font]}>{MSG.GAME_WON.TITLE}</Text>
+                        <Image
+                            source={require('../../../../application/images/astronaut2.png')}
+                            style={styles.image}
+                        />
+                        <Text style={[styles.title, styles.font]}>{this.props.score}</Text>
+                        <Text style={[styles.title, styles.font, styles.score]}>{MSG.GAME.SCORE}</Text>
                         <View style={styles.lower}>
                             <TouchableOpacity onPress={this.props.onKeepGoing}>
-                                <View style={[styles.buttonContainer, styles.keepGoingContainer]}>
+                                <View style={[styles.buttonContainer]}>
                                     <Text style={styles.textButton}>{MSG.GAME_WON.KEEP_GOING}</Text>
                                 </View>
                             </TouchableOpacity>

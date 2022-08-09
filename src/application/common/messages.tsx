@@ -2,7 +2,9 @@ export default {
     GAME: {
         NEW_GAME: 'Nuevo Juego',
         INSTRUCTIONS: 'Colisionar el cohete y los planetas recorriendo el sistema solar hasta llegar al',
-        OBJECTIVE: 'Sol!'
+        OBJECTIVE: 'Sol!',
+        LOADING: 'Cargando',
+        SCORE: 'Puntos'
     },
     HEADING: {
         NAME: 'Space X',
@@ -10,11 +12,11 @@ export default {
         BEST_SCORE: 'MEJOR PUNTAJE'
     },
     GAME_OVER: {
-        TITLE: 'Game Over!',
+        TITLE: 'GAME OVER!',
         TRY_AGAIN: 'Intentar otra vez'
     },
     GAME_WON: {
-        TITLE: '¡Felicidades, acabas de ganar!',
+        TITLE: 'YOU WIN!',
         KEEP_GOING: 'Sigue adelante'
     }
 }

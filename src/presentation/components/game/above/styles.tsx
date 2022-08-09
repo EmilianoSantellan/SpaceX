@@ -1,5 +1,6 @@
 import { StyleSheet } from 'react-native';
 import Dimensions from '../../../../application/utils/dimensions';
+import colors from '../../../../application/common/colors';
 
 export const styles = StyleSheet.create({
     container: {
@@ -21,7 +22,9 @@ export const styles = StyleSheet.create({
         fontWeight: 'bold',
     },
     newGameContainer: {
-        backgroundColor: '#66acff',
+        // backgroundColor: '#66acff',
+        backgroundColor: colors.secondary,
+        height: 55,
         paddingHorizontal: Dimensions.size["4"],
         paddingVertical: Dimensions.size["4"],
         borderRadius: Dimensions.size["2"],

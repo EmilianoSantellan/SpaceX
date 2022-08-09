@@ -1,6 +1,7 @@
 import { StyleSheet, Dimensions } from 'react-native';
 const { width } = Dimensions.get('window');
 import D from '../../../../application/utils/dimensions';
+import Colors from '../../../../application/common/colors';
 
 export const styles = StyleSheet.create({
     container: {
@@ -11,6 +12,12 @@ export const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
     },
+    wonContainer: {
+        backgroundColor: Colors.primaryVariant,
+    },
+    overContainer: {
+        backgroundColor: Colors.primary,
+    },
     row: {
         width: width - 40,
         height: 120,
@@ -18,6 +25,7 @@ export const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
     },
+    image: { width: 200, height: 200, marginTop: 20 },
     title: {
         fontSize: D.size["18"],
         color: 'white',
@@ -25,6 +33,9 @@ export const styles = StyleSheet.create({
     },
     font: {
         fontFamily: 'Cartoon Fun',
+    },
+    score: {
+        fontSize: D.size["12"]
     },
     lower: {
         flex: 1,
@@ -36,7 +47,8 @@ export const styles = StyleSheet.create({
         borderRadius: 3,
         paddingHorizontal: 15,
         alignItems: 'center',
-        justifyContent:'center'
+        justifyContent:'center',
+        backgroundColor: '#8f7a66'
     },
     textButton: {
         fontSize: 24,
@@ -50,3 +62,5 @@ export const styles = StyleSheet.create({
         backgroundColor: '#FF5959',
     }
 });
+
+export const colors = Colors;

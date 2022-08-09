@@ -1,5 +1,6 @@
 import { StyleSheet } from 'react-native';
 import Dimensions from '../../../application/utils/dimensions';
+import colors from '../../../application/common/colors';
 
 export const styles = StyleSheet.create({
     heading: {
@@ -34,13 +35,15 @@ export const styles = StyleSheet.create({
         justifyContent: 'center'
     },
     containerScores: {
-        backgroundColor: '#3473ce'
+        // backgroundColor: '#3473ce'
+        backgroundColor: colors.primary
     },
     containerBest: {
-        backgroundColor: '#0cb0c1'
+        // backgroundColor: '#0cb0c1'
+        backgroundColor: colors.primaryVariant
     },
     containerTitle: {
-        color: '#eee4da',
+        color: '#fff',
         textAlign: 'center',
         fontWeight: 'bold',
         fontSize: Dimensions.size["3"]
