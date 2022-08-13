@@ -8,24 +8,24 @@ var {
 import { styles } from './styles';
 
 // Modules
-import StorageManager from '../../application/persist/localStorageManager';
-import Grid from '../../application/utils/grid.class';
-import Tile from '../../application/utils/tile.class';
+import StorageManager from '../../../application/persist/localStorageManager';
+import Grid from '../../../application/utils/grid.class';
+import Tile from '../../../application/utils/tile.class';
 
 // Views
-import Heading from '../../infrastructure/components/heading/heading';
-import AboveGame from '../components/game/above/aboveGame';
-import GameContainer from '../components/game/container/gameContainer';
-import GameOver from '../components/game/message/GameOver';
-import GameWon from '../components/game/message/gameWon';
-import Loading from '../../infrastructure/components/loading/loading';
+import Heading from '../../../infrastructure/components/heading/heading';
+import AboveGame from '../../components/game/above/aboveGame';
+import GameContainer from '../../components/game/container/gameContainer';
+import GameOver from '../../components/game/message/GameOver';
+import GameWon from '../../components/game/message/gameWon';
+import Loading from '../../../infrastructure/components/loading/loading';
 
 // Interfaces
-import { ITile } from '../../application/interfaces';
-import { IGameProps, IGameState, ITraversal } from '../../application/interfaces/game.interface';
+import { ITile } from '../../../application/interfaces';
+import { IGameProps, IGameState, ITraversal } from '../../../application/interfaces/game.interface';
 
 // Sounds
-import SoundGame from '../../application/common/sounds';
+import SoundGame from '../../../application/common/sounds';
 
 // StorageManager
 const storageManager = new StorageManager();
@@ -102,7 +102,7 @@ class SpaceXContainer extends React.Component<IGameProps, IGameState> {
         var _self = this;
         return (
             <View style={styles.container}>
-                <ImageBackground source={require('../../application/images/background.png')} resizeMode="cover" style={styles.image}>
+                <ImageBackground source={require('../../../application/images/background.png')} resizeMode="cover" style={styles.image}>
                     <Heading score={this.state.score} best={this.state.best}></Heading>
                     <AboveGame onRestart={() => _self.restart()}></AboveGame>
                     <GameOver over={this.state.over} score={this.state.score} onTryAagin={() => _self.restart()} />
@@ -194,6 +194,8 @@ class SpaceXContainer extends React.Component<IGameProps, IGameState> {
             .then((res: any) => {
                 _self.showLoading = false;
                 _self.setGameState(res);
+            }).catch(() => {
+                _self.showLoading = false;
             })
     }
 

@@ -7,16 +7,16 @@ export const styles = StyleSheet.create({
     container: {
         flex: 1,
         overflow: 'hidden',
-        backgroundColor: 'rgba(0, 0, 15, 0.5)',
+        backgroundColor: Colors.background,
         flexDirection: 'column',
         alignItems: 'center',
         justifyContent: 'center',
     },
     wonContainer: {
-        backgroundColor: Colors.primaryVariant,
+        // backgroundColor: Colors.primaryVariant,
     },
     overContainer: {
-        backgroundColor: Colors.primary,
+        // backgroundColor: Colors.primary,
     },
     row: {
         width: width - 40,
@@ -26,6 +26,7 @@ export const styles = StyleSheet.create({
         justifyContent: 'center',
     },
     image: { width: 200, height: 200, marginTop: 20 },
+    imageBackground: { flex: 1, justifyContent: "center" },
     title: {
         fontSize: D.size["18"],
         color: 'white',
@@ -62,5 +63,3 @@ export const styles = StyleSheet.create({
         backgroundColor: '#FF5959',
     }
 });
-
-export const colors = Colors;

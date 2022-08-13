@@ -2,7 +2,7 @@ import React from 'react';
 import { View, Text, Image } from 'react-native';
 // import { SvgUri } from 'react-native-svg';
 import { styles } from './styles';
-import PLANETS from '../../../application/common/planets';
+import { getPlanet } from '../../../application/common/planets';
 import Dimensions from '../../../application/utils/dimensions';
 import { ITile } from '../../../application/interfaces';
 const { width } = Dimensions.get('window')
@@ -21,7 +21,7 @@ const Tile = (props: ITile) => {
     return (
         <View style={[styles.tile, tilePositionStyle]}>
             {/* <Text style={[styles.tileText]}>{props.value}</Text> */}
-            <Image style={{ width: ITEM_WIDTH, height: ITEM_WIDTH }} source={PLANETS(props.value)?.src}></Image>
+            <Image style={{ width: ITEM_WIDTH, height: ITEM_WIDTH }} source={getPlanet(props.value)}></Image>
         </View>
     );
 };

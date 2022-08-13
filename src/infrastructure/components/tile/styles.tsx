@@ -13,7 +13,7 @@ export const styles = StyleSheet.create({
     },
     tileText: {
         fontSize: Dimensions.size["14"],
-        color: '#776E65',
+        color: 'white',
         textAlign: 'center',
         textAlignVertical: "center",
         flex: 1

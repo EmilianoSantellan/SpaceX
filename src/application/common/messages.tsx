@@ -1,7 +1,7 @@
 export default {
     GAME: {
         NEW_GAME: 'Nuevo Juego',
-        INSTRUCTIONS: 'Colisionar el cohete y los planetas recorriendo el sistema solar hasta llegar al',
+        INSTRUCTIONS: 'Colisionar ateroides y planetas recorriendo el sistema solar hasta llegar al',
         OBJECTIVE: 'Sol!',
         LOADING: 'Cargando',
         SCORE: 'Puntos'
