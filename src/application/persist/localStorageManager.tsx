@@ -1,4 +1,3 @@
-// import { AsyncStorageStatic } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { ILocalStorage } from '../interfaces/local-storage.interface';
 

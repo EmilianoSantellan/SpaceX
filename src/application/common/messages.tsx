@@ -18,5 +18,9 @@ export default {
     GAME_WON: {
         TITLE: 'YOU WIN!',
         KEEP_GOING: 'Sigue adelante'
+    },
+    ABOUT: {
+        INFO: 'Desarrollado por',
+        INFO_DEVELOPER: 'Emiliano Gabriel Santellan'
     }
 }
