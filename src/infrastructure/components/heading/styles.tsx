@@ -30,6 +30,7 @@ export const styles = StyleSheet.create({
         paddingBottom: Dimensions.size["2"],
         borderRadius: Dimensions.size["2"],
         marginLeft: Dimensions.size["2"],
+        height: 50,
         flexDirection: 'column',
         alignItems: 'center',
         justifyContent: 'center'

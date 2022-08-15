@@ -102,15 +102,21 @@ class SpaceXContainer extends React.Component<IGameProps, IGameState> {
         var _self = this;
         return (
             <View style={styles.container}>
-                <ImageBackground source={require('../../../application/images/background.png')} resizeMode="cover" style={styles.image}>
-                    <Heading score={this.state.score} best={this.state.best}></Heading>
-                    <AboveGame onRestart={() => _self.restart()}></AboveGame>
+                <ImageBackground source={require('../../../application/images/background.png')} resizeMode="cover" style={styles.backgroundImage}>
+                    <View style={styles.gameContainer}>
+                        <View style={styles.heading}>
+                            <Heading score={this.state.score} best={this.state.best}></Heading>
+                        </View>
+                        <View style={styles.above}>
+                            <AboveGame onRestart={() => _self.restart()}></AboveGame>
+                        </View>
+                        <View {...this._panResponder.panHandlers} style={styles.game}>
+                            <GameContainer tiles={tiles} />
+                        </View>
+                    </View>
                     <GameOver over={this.state.over} score={this.state.score} onTryAagin={() => _self.restart()} />
                     <GameWon won={this.state.won} score={this.state.score} onKeepGoing={() => _self.keepGoing()} />
                     <Loading show={this.showLoading} />
-                    <View {...this._panResponder.panHandlers}>
-                        <GameContainer tiles={tiles} />
-                    </View>
                 </ImageBackground>
             </View>
         );

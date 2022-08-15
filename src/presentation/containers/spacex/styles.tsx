@@ -11,8 +11,24 @@ export const styles = StyleSheet.create({
         backgroundColor: colors.background,
         paddingHorizontal: Dimensions.size["5"],
     },
-    image: {
+    backgroundImage: {
         flex: 1,
         justifyContent: "center"
+    },
+    gameContainer: {
+        flex: 1, 
+        flexDirection: 'column'
+    },
+    heading: {
+        flex: 2, 
+        justifyContent: 'flex-end'
+    },
+    above: {
+        flex: 1, 
+        justifyContent: 'center'
+    }, 
+    game: {
+        flex: 7, 
+        justifyContent: 'center'
     }
 });

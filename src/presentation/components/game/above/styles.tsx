@@ -16,7 +16,7 @@ export const styles = StyleSheet.create({
     text: {
         color: '#D5E4CF',
         fontSize: Dimensions.size["6"],
-        lineHeight: Dimensions.size["8"],
+        lineHeight: Dimensions.size["7"],
     },
     boldText: {
         fontWeight: 'bold',
